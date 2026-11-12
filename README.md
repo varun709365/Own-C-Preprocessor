@@ -41,12 +41,6 @@ Example:
 #define PI 3.14
 ```
 
-- Supports function-like macros.
-
-Example:
-```c
-#define SQUARE(x) ((x)*(x))
-```
 
 ## 📂 Project Structure
 
