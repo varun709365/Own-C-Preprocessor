@@ -1,151 +1,144 @@
-## Repository 2: C Preprocessor
+Own C Preprocessor
 
-Suggested repository name: `custom-c-preprocessor`
+## 📌 Project Overview
 
-````markdown
-# Custom C Preprocessor
+**MyPreprocessor** is a preprocessor tool developed using C programming. It processes C source files by performing three major preprocessing operations:
 
-A modular preprocessor tool written in C. It processes a C source file by removing comments, expanding included files, and substituting macros.
+- Comment Removal
+- File Inclusion
+- Macro Substitution
 
-The final executable is named `mypreprocessor`.
+The tool reads a C source file, processes the preprocessing directives, and generates an extended source file with a `.i` extension.
 
-## Features
+## 🎯 Objectives
 
-- Remove single-line comments beginning with `//`
-- Remove multi-line comments enclosed by `/*` and `*/`
-- Preserve the readability of the remaining source code
-- Process file inclusion directives
-- Replace an `#include` directive with the included file's contents
-- Store and substitute object-like macros
-- Support function-like macros with arguments
-- Generate a preprocessed file with the `.i` extension
-- Accept the source filename as a command-line argument
-- Use separate modules for different preprocessing operations
+- To understand the working of a C preprocessor.
+- To remove single-line and multi-line comments.
+- To implement file inclusion functionality.
+- To perform macro substitution.
+- To develop a modular C application using multiple source and header files.
+- To use Makefile for compiling and building the project.
 
-## Supported Directives
+## ✨ Features
 
-### File Inclusion
+### 1. Comment Removal
+- Removes single-line comments (`//`).
+- Removes multi-line comments (`/* ... */`).
+- Preserves the structure and readability of the remaining source code.
 
+### 2. File Inclusion
+- Identifies `#include` directives.
+- Opens the specified header file.
+- Replaces the include directive with the contents of the included file.
+
+### 3. Macro Substitution
+- Identifies and stores macro definitions using `#define`.
+- Replaces macro names with their corresponding values.
+- Supports simple macros.
+
+Example:
 ```c
-#include <filename>
-The specified file is opened, and its contents replace the #include line in the generated output.
-
-Simple Macros
-c
-
-
 #define PI 3.14
-Subsequent occurrences of PI are replaced with 3.14.
+```
 
-Function-Like Macros
-c
+- Supports function-like macros.
 
+Example:
+```c
+#define SQUARE(x) ((x)*(x))
+```
 
-#define SQUARE(x) ((x) * (x))
-A usage such as:
+## 📂 Project Structure
 
-c
-
-
-SQUARE(5)
-is expanded using the macro definition.
-
-Project Structure
-text
-
-
-custom-c-preprocessor/
+```text
+MyPreprocessor/
+│
 ├── main.c
 ├── comment_removal.c
 ├── comment_removal.h
-├── macro_handler.c
-├── macro_handler.h
 ├── file_inclusion.c
 ├── file_inclusion.h
-├── preprocessor.c
-├── preprocessor.h
+├── macro_handler.c
+├── macro_handler.h
 ├── Makefile
 └── README.md
-The exact module names may differ, but comment removal, file inclusion, macro processing, and overall program control should remain separated.
+```
 
-Compilation
-Build the project using the supplied Makefile:
+## 🛠️ Technologies Used
 
-bash
+- Programming Language: C
+- Compiler: GCC
+- Operating System: Linux / Ubuntu
+- Build Tool: Makefile
 
+## ⚙️ Compilation
 
+Compile the project using:
+
+```bash
 make
-The command creates the executable:
+```
 
-text
+This creates an executable named:
 
-
+```bash
 mypreprocessor
-Usage
-bash
+```
 
+## ▶️ Execution
 
+Run the executable by providing the input C filename as a command-line argument.
+
+```bash
 ./mypreprocessor inputfile.c
-For an input file named inputfile.c, the program creates:
+```
 
-text
+After successful processing, an output file will be generated:
 
-
+```text
 inputfile.i
-Example
-Input: example.c
-c
+```
 
+## 📌 Example
 
+**Input file: `inputfile.c`**
+
+```c
 #include <stdio.h>
 
 #define PI 3.14
-#define SQUARE(x) ((x) * (x))
 
-// Program entry point
-int main(void)
+int main()
 {
-    /* Calculate the area of a circle. */
-    float area = PI * SQUARE(5);
-    printf("%f\n", area);
+    // Calculate area
+    float radius = 5;
+    float area = PI * radius * radius;
+
+    printf("Area = %f", area);
+
     return 0;
 }
-Run the Preprocessor
-bash
+```
 
+**Expected output file: `inputfile.i`**
 
-./mypreprocessor example.c
-Generated Output
-text
+The output contains the processed source code with:
+- Comments removed.
+- Included file contents expanded.
+- Defined macros substituted with their corresponding values.
 
+## 📚 Concepts Learned
 
-example.i
-The generated file contains the processed source after comment removal, file inclusion, and macro substitution.
+- C Programming
+- File Handling
+- Command-Line Arguments (`argc`, `argv`)
+- String Manipulation
+- Dynamic Memory Allocation
+- Modular Programming
+- Header Files
+- Preprocessor Directives
+- Makefile and Compilation Process
 
-Processing Stages
-Read the input filename from the command line.
-Open the source file.
-Remove single-line and multi-line comments.
-Process file inclusion directives.
-Store macro definitions.
-Substitute subsequent macro usages.
-Write the processed source to a .i file.
-Release allocated resources and close all files.
-Error Handling
-The program should report errors for cases such as:
+## 👩‍💻 Author
 
-Missing command-line arguments
-Input file not found
-Included file not found
-Invalid macro definitions
-Output file creation failure
-Memory allocation failure
-Concepts Used
-Command-line arguments
-File handling
-String processing
-Macro storage and substitution
-Dynamic memory allocation
-Modular programming
-Header files
-Makefiles
+Developed as a C programming project to understand the internal working of a C preprocessor.
